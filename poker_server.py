@@ -3,7 +3,7 @@ import time
 
 # When server is running, run ipconfig (ifconfig on UNIX) to get the IPv4 Address.
 # Then go to http://<IPv4>:<hostPort>, for example http://192.168.1.102:8725
-hostName = "192.168.1.102"  # Or leave blank, i.e. hostName = ""
+hostName = ""  # Or leave blank, i.e. hostName = ""
 hostPort = 8725
 
 
