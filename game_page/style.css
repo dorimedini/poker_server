@@ -1,0 +1,187 @@
+body
+{
+    padding: 250px;
+    background-image: url('background.jpg')
+
+}
+.container
+{
+   
+    padding:180px;
+    background-color: #ffefe0; 
+    box-shadow: 1px 5px 15px 3px brown;   
+}
+
+.poker_table
+{
+  background-image: radial-gradient(green,black);
+  height: 500px;
+  width: 800px;
+  margin: auto;
+  border-radius:300px;
+  padding: 50px;
+  border-style: solid;
+  border-width: 25px;
+  border-color:brown;
+  position:relative;
+   
+    
+}
+
+.header
+{
+    text-align: center; 
+    color:red; 
+    
+    
+}
+
+
+.player-1, .player-2, .player-3, .player-4, .player-5, .player-6
+
+{
+    width:70px;
+    height:70px;
+    position:absolute;
+   
+}
+
+ 
+.player-1
+{
+    
+    width: 80px;
+    top:-180px;
+    left:60 px;
+   
+}
+
+.player-2
+{
+    
+    width: 80px;
+    top:-180px;
+    right:60px;
+}
+.player-3
+{
+    
+    width: 80px;
+    bottom:-70px;
+    left:60px;
+   
+}
+
+.player-4
+{
+    
+    width: 80px;
+    bottom:-70px;
+    right:60px;
+   
+}
+.player-5
+{
+    
+    width: 80px;
+    top:50px;
+    left:-110px;
+   
+}
+.player-6
+{
+    width: 80px;
+    top:50px;
+    right:-110px;
+}
+
+img
+{
+   
+    width: 80px;
+   
+   
+             
+} 
+
+.card-area
+{
+    
+  display: block;
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto;  
+  width: 350px;
+  padding: 4px;
+  border-style: solid;
+  border-width: 1px;    
+  border-color: black;
+}
+.cards li 
+{
+    display: inline;
+    list-style: none;
+   
+}
+#option-1 li
+{
+   
+    display:inline;
+    list-style: none;
+    border:.5px solid black;
+    margin-right: -80px;
+    padding: 3px;
+}
+ 
+#option-2 li
+{
+   
+    display:inline;
+    list-style: none;
+    border:.5px solid black;
+    margin-right: -80px;
+    padding: 3px;
+}
+    
+#option-3 li
+{
+   
+    display:inline;
+    list-style: none;
+    border:.5px solid black;
+    margin-right: -80px;
+    padding:3px;
+    
+}
+    
+#option-4 li
+{
+   
+    display:inline;
+    list-style: none;
+    border:.5px solid black;
+    margin-right: -80px;
+    padding: 3px;
+}
+    
+#option-5 li
+{
+   
+    display:inline;
+    list-style: none;
+    border:.5px solid black;
+    margin-right: -80px;
+    padding: 3px;
+}
+    
+#option-6 li
+{
+   
+    display:inline;
+    list-style: none;
+    border:.5px solid black;
+    margin-right: -80px;
+    padding: 3px;
+}
+    
+
