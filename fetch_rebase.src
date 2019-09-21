@@ -1,0 +1,16 @@
+#!/bin/bash
+
+echo "Fetching..."
+git fetch
+if [ $? -eq 0 ]; then
+	echo "Rebasing..."
+	git rebase
+	if [ $? -eq 0 ]; then
+		echo "Done"
+	else
+		echo "Rebase failed"
+	fi
+else
+	echo "Fetch failed, not rebasing"
+fi
+
