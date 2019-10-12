@@ -1,40 +1,41 @@
-from http.server import BaseHTTPRequestHandler, HTTPServer
-import time
-
-# When server is running, run ipconfig (ifconfig on UNIX) to get the IPv4 Address.
-# Then go to http://<IPv4>:<hostPort>, for example http://192.168.1.102:8725
-hostName = ""  # Or leave blank, i.e. hostName = ""
-hostPort = 8725
+from flask import Flask, send_from_directory
+import re
+app = Flask(__name__)
 
 
-class MyServer(BaseHTTPRequestHandler):
-    def _set_headers(self):
-        self.send_response(200)
-        self.send_header("Content-type", "text/html")
-        self.end_headers()
+def is_clean_path(path):
+    if not re.search(r'^[a-zA-Z0-9\.,\'"\/_\-\+]+$', path):
+        return False
+    if re.search(r'/\.\./', path) or \
+            re.search(r'^\.\./', path) or \
+            re.search(r'/\.\.$', path) or \
+            re.search(r'\\\.\.\\', path) or \
+            re.search(r'^\.\.\\', path) or \
+            re.search(r'\\\.\.$', path):
+        return False
+    return True
 
-    def do_GET(self):
-        self._set_headers()
-        self.wfile.write(bytes("<html><head><title>Title goes here.</title></head>", "utf-8"))
-        self.wfile.write(bytes("<body><p>This is a test.</p>", "utf-8"))
-        self.wfile.write(bytes("<p>You accessed path: {}</p>".format(self.path), "utf-8"))
-        self.wfile.write(bytes("</body></html>", "utf-8"))
 
-    def do_POST(self):
-        # Doesn't do anything with posted data
-        content_length = int(self.headers['Content-Length'])  # <--- Gets the size of data
-        post_data = self.rfile.read(content_length)  # <--- Gets the data itself
-        print(post_data)
-        self._set_headers()
+def send_from_directory_safe(directory, path):
+    if not is_clean_path(path):
+        return "Unsafe path requested: {}".format(path)
+    return send_from_directory(directory, path)
 
-if __name__ == '__main__':
-    myServer = HTTPServer((hostName, hostPort), MyServer)
-    print(time.asctime(), "Server Starts - %s:%s" % (hostName, hostPort))
 
-    try:
-        myServer.serve_forever()
-    except KeyboardInterrupt:
-        pass
+@app.route("/js/<path>")
+def get_js(path):
+    return send_from_directory_safe('js', path)
 
-    myServer.server_close()
-    print(time.asctime(), "Server Stops - %s:%s" % (hostName, hostPort))
+
+@app.route("/css/<path>")
+def get_css(path):
+    return send_from_directory_safe('css', path)
+
+
+@app.route("/html/<path>")
+def get_html(path):
+    return send_from_directory_safe('html', path)
+
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=8725)
